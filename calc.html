@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            HTML Calculator
+        </title>
+        <style>  
+        table{
+            border: 2px solid black;
+            margin-left: auto;
+            margin-right:auto;
+        }
+        input[type="button"]{
+            width: 100px;
+            padding:30px 60px;
+            background-color:grey;
+            color:black;
+            font-size: 45px;
+            font-weight:bold;
+            border:none;
+            border-radius:40px;
+        }
+        input[type="text"]{
+            padding:20px 30px;
+            font-size: 25px;
+            font-weight:bold;
+            border: none;
+            border-radius: 5px;
+            border:2px solid black;
+        } 
+        </style>
+        <script>
+        // Function to display numbers and operators in the input field
+        function dis(val) {
+    document.getElementById("result").value += val;
+}
+
+// Function to clear the input field
+function clr() {
+    document.getElementById("result").value = "";
+}
+
+// Function to calculate and display the result
+function solve() {
+    let expression = document.getElementById("result").value;
+    let result;
+
+    try {
+        result = eval(expression); // Evaluate the expression
+
+        // Check if the result is NaN or infinite
+        if (isNaN(result) || !isFinite(result)) {
+            throw new Error("Invalid input");
+        }
+
+        // Display the result
+        document.getElementById("result").value = result;
+    } catch (error) {
+        // Alert the user if there's an error
+        alert("Error: " + error.message);
+        clr(); // Clear the input field in case of error
+    }
+}
+ </script>  
+    </head>
+        <body>
+            <table id="cals">
+                <tr>
+                    <td colspan="3">
+                        <input type="text" id="result">
+                    </td>
+                    <td><input type="button" value="c" onclick="clr()" /> </td> 
+                </tr> 
+    <tr> 
+        <td><input type="button" value="1" onclick="dis('1')"> </td> 
+        <td><input type="button" value="2" onclick="dis('2')"> </td> 
+        <td><input type="button" value="3" onclick="dis('3')"> </td> 
+        <td><input type="button" value="/" onclick="dis('/')"> </td> 
+    </tr> 
+    <tr>
+        <td><input type="button" value="4" onclick="dis('4')"> </td> 
+        <td><input type="button" value="5" onclick="dis('5')"> </td> 
+        <td><input type="button" value="6" onclick="dis('6')"> </td> 
+        <td><input type="button" value="" onclick="dis('*')"> </td> 
+    </tr>
+    <tr>
+        <td><input type="button" value="7" onclick="dis('7')"> </td> 
+        <td><input type="button" value="8" onclick="dis('8')"> </td> 
+        <td><input type="button" value="9" onclick="dis('9')"> </td> 
+        <td><input type="button" value="-" onclick="dis('-')"> </td> 
+    </tr>
+    <tr>
+        <td><input type="button" value="0" onclick="dis('0')"> </td> 
+        <td><input type="button" value="." onclick="dis('.')"> </td> 
+        <td><input type="button" value="=" onclick="solve()"> </td> 
+        <td><input type="button" value="+" onclick="dis('+')"> </td> 
+    </tr>
+</table>
+
+</body>
+</html>
